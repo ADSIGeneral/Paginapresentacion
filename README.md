@@ -1,5 +1,10 @@
 # Paginapresentacion
 Pagina de presentación de Análisis de Diseño de Sistemas de Infomación 
+# Requerimientos
+Crear una página de presentación de la asignatura 
+Colocar información importante relacionada con la asignatura 
+Añadir la modalidad de la asignatura
+Añadir la tenología
 # Descripción del Código
 Estructura Básica: El código empieza con la declaración del tipo de documento <!DOCTYPE html> y la etiqueta <html> con el atributo lang="es" para especificar que el idioma de la página es español.
 Metadatos: Dentro de la etiqueta <head>, se define el juego de caracteres (<meta charset="UTF-8">), se establece la vista adaptable (<meta name="viewport" content="width=device-width, initial-scale=1.0">), y se define el título de la página (<title>).
