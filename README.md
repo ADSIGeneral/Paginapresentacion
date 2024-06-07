@@ -12,3 +12,4 @@ Estilos en Línea: Se utiliza la etiqueta <style> para incluir algunos estilos b
 Encabezado: La sección <header> contiene el título principal de la página.
 Contenido Principal: La sección <main> incluye un contenedor .content con introducción, objetivos y contenidos del curso.
 Pie de Página: La sección <div class="footer"> contiene el pie de página con información de derechos de autor.
+prueba
