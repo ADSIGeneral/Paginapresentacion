@@ -25,5 +25,4 @@ jobs: # Define un trabajo llamado htmlhint que se ejecutará en un entorno Ubunt
       run: npm install -g htmlhint
 
     - name: Validate HTML # Ejecuta htmlhint para validar todos los archivos HTML (*.html) en el directorio y subdirectorios del repositorio
-      run: htmlhint '**/*.html'
-# workflow útil para garantizar que los archivos HTML en el repositorio cumplan con estándares de calidad definidos por la herramienta htmlhint
+      run: htmlhint '**/*.html' # # workflow útil para garantizar que los archivos HTML en el repositorio cumplan con estándares de calidad definidos por la herramienta htmlhint
