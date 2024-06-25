@@ -24,14 +24,13 @@ jobs:
     - name: Install dependencies #Instala globalmente las dependencias necesarias: ervidor HTTP simple para servir archivos estáticos, 
     #Una herramienta automatizada y de código abierto para mejorar la calidad de las páginas web, 
     #Herramienta para esperar a que un recurso esté disponible
-      run: 
+      run: |
         npm install -g http-server 
         npm install -g lighthouse
         npm install -g wait-on
 
     - name: Serve files #Inicia un servidor HTTP local en el puerto 8080 (http-server -p 8080 &) y espera a que esté disponible (wait-on http://localhost:8080)
-      run: # Ejecuta Lighthouse en la URL http://localhost:8080 para evaluar el rendimiento de la página web. 
-      #Genera un informe en formato JSON y HTML, y guarda el informe HTML en ./lighthouse-report.html.
+      run: | # Ejecuta Lighthouse en la URL http://localhost:8080 para evaluar el rendimiento de la página web
         http-server -p 8080 &
         wait-on http://localhost:8080
 
