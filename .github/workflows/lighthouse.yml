@@ -36,7 +36,7 @@ jobs:
         wait-on http://localhost:8080
 
     - name: Run Lighthouse
-      run: lighthouse http://localhost:8080 --output json --output html --output-path ./lighthouse-report.html
+      run: lighthouse http://localhost:8080 --output json --output html --output-path=./lighthouse-report.html
 
     - name: Upload Lighthouse report #Utiliza la acción actions/upload-artifact@v2 para subir el informe de Lighthouse como un artefacto del workflow. Esto permite acceder al informe después de que el workflow haya finalizado
       uses: actions/upload-artifact@v2
