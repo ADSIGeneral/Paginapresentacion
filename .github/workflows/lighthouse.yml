@@ -30,7 +30,8 @@ jobs:
         npm install -g wait-on
 
     - name: Serve files #Inicia un servidor HTTP local en el puerto 8080 (http-server -p 8080 &) y espera a que esté disponible (wait-on http://localhost:8080)
-      run: | # Ejecuta Lighthouse en la URL http://localhost:8080 para evaluar el rendimiento de la página web
+    # Ejecuta Lighthouse en la URL http://localhost:8080 para evaluar el rendimiento de la página web
+      run: | 
         http-server -p 8080 &
         wait-on http://localhost:8080
 
