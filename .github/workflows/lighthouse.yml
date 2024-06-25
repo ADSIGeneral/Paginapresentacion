@@ -32,12 +32,16 @@ jobs:
         http-server -p 8080 &
         wait-on http://localhost:8080
 
-    - name: Run Lighthouse
+    - name: Verify server is running
       run: |
-        lighthouse http://localhost:8080 --output json --output html --output-path ./lighthouse-report.html
+        curl -I http://localhost:8080
+
+    - name: Run Lighthouse
+      run: lighthouse http://localhost:8080 --output json --output html --output-path ./lighthouse-report.html
 
     - name: Upload Lighthouse report
       uses: actions/upload-artifact@v2
       with:
         name: lighthouse-report
         path: ./lighthouse-report.html
+
