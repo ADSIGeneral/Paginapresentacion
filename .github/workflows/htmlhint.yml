@@ -1,28 +1,29 @@
-name: Validate HTML
+name: Validate HTML #Define el nombre del workflow
 
-on:
-  push:
+on: #Este workflow se activará en dos eventos
+  push: #Cuando se realice un push a la rama main.
     branches:
       - main
-  pull_request:
+  pull_request: # Cuando se abra un pull request hacia la rama main
     branches:
       - main
 
-jobs:
+jobs: # Define un trabajo llamado htmlhint que se ejecutará en un entorno Ubuntu (última versión disponible)
   htmlhint:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out the repository
+    - name: Check out the repository #Utiliza la acción actions/checkout@v2 para clonar el repositorio en el entorno de ejecución
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
+    - name: Set up Node.js #Configura Node.js en el entorno de ejecución con la versión 14
       uses: actions/setup-node@v2
       with:
         node-version: '14'
 
-    - name: Install htmlhint
+    - name: Install htmlhint # Instala globalmente la herramienta htmlhint utilizando npm
       run: npm install -g htmlhint
 
-    - name: Validate HTML
+    - name: Validate HTML # Ejecuta htmlhint para validar todos los archivos HTML (*.html) en el directorio y subdirectorios del repositorio
       run: htmlhint '**/*.html'
+# workflow  útil para garantizar que los archivos HTML en el repositorio cumplan con estándares de calidad definidos por la herramienta htmlhint

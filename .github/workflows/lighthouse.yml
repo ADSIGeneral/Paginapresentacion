@@ -1,42 +1,49 @@
-name: Test Performance with Lighthouse
-
+name: Test Performance with Lighthouse #Define el nombre del workflow
+#Este workflow se activará en dos eventos:
 on:
-  push:
+  push: #Cuando se realice un push a la rama main
     branches:
       - main
-  pull_request:
+  pull_request: #Cuando se abra un pull request hacia la rama main
     branches:
       - main
 
 jobs:
-  lighthouse:
+  lighthouse: #Define un trabajo llamado lighthouse que se ejecutará en un entorno Ubuntu (última versión disponible)
     runs-on: ubuntu-latest
 
-    steps:
-    - name: Check out the repository
+    steps: #pasos que se ejecutarán dentro del trabajo lighthouse
+    - name: Check out the repository # Utiliza la acción actions/checkout@v2 para clonar el repositorio en el entorno de ejecución
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
+    - name: Set up Node.js # Configura Node.js en el entorno de ejecución con la versión 16
       uses: actions/setup-node@v2
       with:
         node-version: '16'
 
-    - name: Install dependencies
-      run: |
-        npm install -g http-server
+    - name: Install dependencies #Instala globalmente las dependencias necesarias: ervidor HTTP simple para servir archivos estáticos, 
+    #Una herramienta automatizada y de código abierto para mejorar la calidad de las páginas web, 
+    #Herramienta para esperar a que un recurso esté disponible
+      run: 
+        npm install -g http-server 
         npm install -g lighthouse
         npm install -g wait-on
 
-    - name: Serve files
-      run: |
+    - name: Serve files #Inicia un servidor HTTP local en el puerto 8080 (http-server -p 8080 &) y espera a que esté disponible (wait-on http://localhost:8080)
+      run: # Ejecuta Lighthouse en la URL http://localhost:8080 para evaluar el rendimiento de la página web. 
+      #Genera un informe en formato JSON y HTML, y guarda el informe HTML en ./lighthouse-report.html.
         http-server -p 8080 &
         wait-on http://localhost:8080
 
     - name: Run Lighthouse
       run: lighthouse http://localhost:8080 --output json --output html --output-path ./lighthouse-report.html
 
-    - name: Upload Lighthouse report
+    - name: Upload Lighthouse report #Utiliza la acción actions/upload-artifact@v2 para subir el informe de Lighthouse como un artefacto del workflow. Esto permite acceder al informe después de que el workflow haya finalizado
       uses: actions/upload-artifact@v2
       with:
         name: lighthouse-report
         path: ./lighthouse-report.html
+# Este archivo YAML define un workflow de GitHub Actions que automatiza la evaluación del rendimiento de una página web utilizando 
+#Lighthouse. Inicia un servidor local, ejecuta pruebas de rendimiento con Lighthouse y sube el informe generado como un artefacto 
+#del workflow. Este tipo de workflow es útil para asegurar que tu aplicación web cumpla con estándares de rendimiento establecidos y 
+#para identificar áreas de mejora.
